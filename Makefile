@@ -1,13 +1,20 @@
-all:
-	docker build -t lewuathe/hadoop-base:latest hadoop-base
-	docker build -t lewuathe/hadoop-master:latest hadoop-master
-	docker build -t lewuathe/hadoop-slave:latest hadoop-slave
+.PHONY: build clean up down
+
+HADOOP_VERSION=2.8.4
+SCALE=2
+
+build: hadoop-base/hadoop-${HADOOP_VERSION}.tar.gz
+	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t lewuathe/hadoop-base:latest hadoop-base
+	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t lewuathe/hadoop-master:latest hadoop-master
+	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t lewuathe/hadoop-slave:latest hadoop-slave
 	docker-compose build
 
-.PHONY: test clean
+hadoop-base/hadoop-${HADOOP_VERSION}.tar.gz:
+	wget http://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz
+	mv hadoop-${HADOOP_VERSION}.tar.gz hadoop-base/
 
-run:
-	docker-compose up -d
+up:
+	docker-compose up --scale slave=${SCALE}
 	echo "http://localhost:9870 for HDFS"
 	echo "http://localhost:8088 for YARN"
 
