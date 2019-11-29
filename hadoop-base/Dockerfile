@@ -104,3 +104,7 @@ EXPOSE 19888
 EXPOSE 8030 8031 8032 8033 8040 8042 8088 8188
 #Other ports
 EXPOSE 49707 2122
+
+RUN echo 'export HADOOP_HOME=/usr/local/hadoop' >> /root/.bashrc
+RUN echo 'export PATH=$PATH:$HADOOP_HOME/bin' >> /root/.bashrc
+RUN echo 'export HADOOP_CLASSPATH=`hadoop classpath`' >> /root/.bashrc
