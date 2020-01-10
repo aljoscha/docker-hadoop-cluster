@@ -4,9 +4,9 @@ HADOOP_VERSION=2.8.4
 SCALE=2
 
 build: hadoop-base/hadoop-${HADOOP_VERSION}.tar.gz
-	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t lewuathe/hadoop-base:latest hadoop-base
-	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t lewuathe/hadoop-master:latest hadoop-master
-	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t lewuathe/hadoop-slave:latest hadoop-slave
+	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t aljoscha/hadoop-base:latest hadoop-base
+	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t aljoscha/hadoop-master:latest hadoop-master
+	docker build --build-arg HADOOP_VERSION=${HADOOP_VERSION} -t aljoscha/hadoop-slave:latest hadoop-slave
 	docker-compose build
 
 hadoop-base/hadoop-${HADOOP_VERSION}.tar.gz:

@@ -57,10 +57,10 @@ launch_cluster() {
     docker network create --driver bridge hadoop-network
   fi
   echo "Launching master server"
-  docker run -d -p 9870:9870 -p 8088:8088 -p 19888:19888 -p 8188:8188 --net hadoop-network --name master -h master lewuathe/hadoop-master:latest
+  docker run -d -p 9870:9870 -p 8088:8088 -p 19888:19888 -p 8188:8188 --net hadoop-network --name master -h master aljoscha/hadoop-master:latest
   echo "Launching slave servers"
   for i in `seq 1 $DATANODE_NUM`; do
-    docker run -d -p 990${i}:9864 -p 804${i}:8042 --name slave${i} -h slave${i} --net hadoop-network lewuathe/hadoop-slave:latest
+    docker run -d -p 990${i}:9864 -p 804${i}:8042 --name slave${i} -h slave${i} --net hadoop-network aljoscha/hadoop-slave:latest
   done
 }
 
@@ -74,11 +74,11 @@ destroy_cluster() {
 
 build_images() {
   cd $DIR/../hadoop-base
-  docker build -f Dockerfile-local -t lewuathe/hadoop-base:latest .
+  docker build -f Dockerfile-local -t aljoscha/hadoop-base:latest .
   cd $DIR/../hadoop-master
-  docker build -t lewuathe/hadoop-master:latest .
+  docker build -t aljoscha/hadoop-master:latest .
   cd $DIR/../hadoop-slave
-  docker build -t lewuathe/hadoop-slave:latest .
+  docker build -t aljoscha/hadoop-slave:latest .
 }
 
 case $1 in

@@ -12,8 +12,8 @@
 #
 # Creates multi node hadoop cluster on Docker
 
-FROM lewuathe/hadoop-base:latest
-MAINTAINER lewuathe
+FROM aljoscha/hadoop-base:latest
+MAINTAINER aljoscha
 
 ADD bootstrap.sh /etc/bootstrap.sh
 RUN chown root:root /etc/bootstrap.sh
