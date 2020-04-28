@@ -1,5 +1,12 @@
 <configuration>
     <property>
+        <name>yarn.resourcemanager.am.max-attempts</name>
+        <value>20</value>
+        <description>
+        The maximum number of application master execution attempts.
+        </description>
+    </property>
+    <property>
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
     </property>
