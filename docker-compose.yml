@@ -14,7 +14,6 @@ services:
     ports:
       - "9864"
       - "8042"
-    container_name: "slave"
   zoo1:
     image: zookeeper:3.4
     restart: always
