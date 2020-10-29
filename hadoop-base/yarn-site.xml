@@ -30,7 +30,7 @@
     </property>
     <property>
         <name>yarn.nodemanager.vmem-check-enabled</name>
-<value>false</value>
+        <value>false</value>
     </property>
 
     <property>
