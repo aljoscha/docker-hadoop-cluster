@@ -14,7 +14,7 @@ hadoop-base/hadoop-${HADOOP_VERSION}.tar.gz:
 	mv hadoop-${HADOOP_VERSION}.tar.gz hadoop-base/
 
 up:
-	docker-compose up --scale slave=${SCALE}
+	docker-compose up -d --scale slave=${SCALE}
 	echo "http://localhost:9870 for HDFS"
 	echo "http://localhost:8088 for YARN"
 
